@@ -84,9 +84,9 @@ class LeakSafeGenerator
             } elseif (!$done && $this->onInterruptClosure) {
                 call_user_func($this->onInterruptClosure);
             }
-            if ($this->onFinishClosure) {
-                call_user_func($this->onFinishClosure);
-            }
+        }
+        if ($this->onFinishClosure) {
+            call_user_func($this->onFinishClosure);
         }
     }
 }
