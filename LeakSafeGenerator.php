@@ -74,8 +74,8 @@ class LeakSafeGenerator
     public function getGenerator() {
         try {
             $done = false;
-            foreach (call_user_func_array($this->generatorClosure, func_get_args()) as $result) {
-                yield $result;
+            foreach (call_user_func_array($this->generatorClosure, func_get_args()) as $key => $result) {
+                yield $key => $result;
             }
             $done = true;
         } finally {
