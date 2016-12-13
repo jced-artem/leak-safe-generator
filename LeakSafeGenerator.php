@@ -24,12 +24,21 @@ class LeakSafeGenerator
      * @param Closure $initClosure
      * @param Closure $onFinishClosure
      */
-    public function __construct(Closure $initClosure, Closure $onFinishClosure)
+    public function __construct(Closure $initClosure = null, Closure $onFinishClosure = null)
     {
-        $this
-            ->init($initClosure)
-            ->onFinish($onFinishClosure)
-        ;
+        if (!is_null($initClosure)) {
+            $this->init($initClosure);
+        } else {
+            // just create empty generator if function isn't provided
+            $this->init(function() {
+                if (false) {
+                    yield;
+                }
+            });
+        }
+        if (!is_null($onFinishClosure)) {
+            $this->onFinish($onFinishClosure);
+        }
     }
     
     /**
@@ -84,9 +93,9 @@ class LeakSafeGenerator
             } elseif (!$done && $this->onInterruptClosure) {
                 call_user_func($this->onInterruptClosure);
             }
-        }
-        if ($this->onFinishClosure) {
-            call_user_func($this->onFinishClosure);
+            if ($this->onFinishClosure) {
+                call_user_func($this->onFinishClosure);
+            }
         }
     }
 }
