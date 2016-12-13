@@ -1,0 +1,20 @@
+{
+    "name": "jced-artem/leak-safe-generator",
+    "type": "library",
+    "description": "Generator wrapper to prevent memory leaks",
+    "keywords": ["generator", "php", "wrapper", "memory", "leak"],
+    "homepage": "https://github.com/jced-artem",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Jced",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {
+        "php": ">=5.5.0"
+    }
+}
